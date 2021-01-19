@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
+
 <body><br>
     <div class="container">
-     <form action="update-product-part" method="post" enctype="multipart/form-data">
-      {{csrf_field()}}
-      
-       <input class="form-control" name="name" type="text" value="{{$products->pro_name}}">
-       <input class="form-control" name="price" type="text" value="{{$products->pro_price}}">
-       <input  name="id" type="hidden" value="{{$products->id}}">
-       <select  name="category">
-        @foreach ($categaries as $category)
-       <option value="{{$category->id}}">{{$category->cat_name}}</option>
-        @endforeach
-       </select>
-       <br>
-       <div class="form-group">
-                            <label for="file">Choose Picture</label>
-                            <input type="file" name="file" class="form-control" onchange="PreviewPhoto(this)" />
-                            <img id="previewing" style="max-width:130px;margin-top:20px;" />
-                        </div>
-       <input type="submit" class="btn btn-success" value="UPDATE">
-       <a href="product-all" class="btn btn-warning">CANCEL</a>
-     </form>
+        <form action="update-product-part" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+
+            <input class="form-control" name="name" type="text" value="{{ $products->pro_name }}">
+            <input class="form-control" name="price" type="text" value="{{ $products->pro_price }}">
+            <input name="id" type="hidden" value="{{ $products->id }}">
+            <select name="category">
+                @foreach ($categaries as $category)
+                    <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
+                @endforeach
+            </select>
+            <br>
+            <div class="form-group">
+                <label for="file">Choose Picture</label>
+                <input type="file" name="file" class="form-control" onchange="PreviewPhoto(this)" />
+                <img id="previewing" style="max-width:130px;margin-top:20px;" />
+            </div>
+            <input type="submit" class="btn btn-success" value="UPDATE">
+            <a href="product-all" class="btn btn-warning">CANCEL</a>
+        </form>
     </div>
 
     <script>
@@ -54,5 +57,6 @@
         integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous">
     </script>
 
-   </body>
+</body>
+
 </html>
