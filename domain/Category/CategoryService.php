@@ -12,26 +12,25 @@ class CategoryService
 
     public function __construct()
     {
-        $this->category = new Category();
+     $this->category = new Category();
     }
 
 //get all category data
     public function getAllData()
     {
-        $data=Category::all();
-        return $data;
+     return $this->category->get();
     }
+
 //store category data
     public function store($request)
     {
-      $this->category->cat_name=$request->cat_name;
-      $this->category->save();
+     $data=$request->all();
+     return $this->category->create($data);
     }
-  
+
 //delete category data
     public function getCategoryData($id)
     {
-       $data=Category::find($id);
-        return $data;
+     return $this->category->find($id);
     }
 }
