@@ -22,7 +22,7 @@
                         <input type="text" class="form-control" name="pro_name" placeholder="Enter product name"><br>
                         <input type="text" class="form-control" name="pro_price" placeholder="Enter product price"><br>
 
-                        <select name="category">
+                        <select name="cat_id">
                             @foreach ($categaries as $category)
                                 <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
                             @endforeach
@@ -30,7 +30,7 @@
                         <br>
                         <div class="form-group">
                             <label for="file">Choose Picture</label>
-                            <input type="file" name="file" class="form-control" onchange="PreviewPhoto(this)" />
+                            <input type="file" name="image" class="form-control" onchange="PreviewPhoto(this)" />
                             <img id="previewing" style="max-width:130px;margin-top:20px;" />
                         </div>
 
@@ -54,7 +54,7 @@
                                 <td>{{ $product->CategoryDetails->cat_name }}</td>
                                 <td>{{ $product->pro_name }}</td>
                                 <td>{{ $product->pro_price }}</td>
-                                <td><img src="{{asset('images')}}/{{$product->image}}" style="max-width:60px;"></td>
+                                <td><img src="{{ asset('images') }}/{{ $product->image }}" style="max-width:60px;"></td>
                                 <td>
                                     <a href="delete-product/{{ $product->id }}" class="btn btn-danger">DELETE</a>
                                 </td>
