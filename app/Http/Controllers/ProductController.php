@@ -41,14 +41,17 @@ class ProductController extends ParentController
    $response['products']=ProductFacade::getProductData($id);
    return view('productUpdate')->with($response);
   }
-  
+
 // update second function start
-  public function update(Request $update)
+  public function update(Request $request)
   {
-   $id=$update->id;
-   $product_data=ProductFacade::getProductData($id);
-   ProductFacade::store($product_data);
-   return redirect(route('product-all'));
+//    $id=$update->id;
+//    $product_data=ProductFacade::getProductData($id);
+//    ProductFacade::store($product_data);
+     $productData=ProductFacade::getProductData($request->id);
+     ProductFacade::updateProduct($productData, $request);
+
+     return redirect(route('product-all'));
   }
 
 
