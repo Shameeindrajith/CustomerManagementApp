@@ -12,9 +12,9 @@
 
 <body><br>
     <div class="container">
-        <form action="update-category-part" method="post">
+        <form action="{{ route('update-category-part') }}" method="post">
             {{ csrf_field() }}
-            <input class="form-control" name="name" type="text" value="{{ $update_categories_data->cat_name }}">
+            <input class="form-control" name="cat_name" type="text" value="{{ $update_categories_data->cat_name }}">
             <input name="id" type="hidden" value="{{ $update_categories_data->id }}">
             <br>
             <input type="submit" class="btn btn-success" value="UPDATE">

@@ -33,7 +33,7 @@
                                 <td>{{ $category->id }}</td>
                                 <td>{{ $category->cat_name }}</td>
                                 <td><a href="delete-category/{{ $category->id }}" class="btn btn-danger">DELETE</a></td>
-                                <td><a href="update-category/{{ $category->id }}" class="btn btn-warning">UPDATE</a>
+                                <td><a href="update-category/{{ $category->id }}" class="btn btn-warning" >UPDATE</a>
                                 </td>
                             </tr>
                         @endforeach
