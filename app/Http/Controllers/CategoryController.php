@@ -37,12 +37,10 @@ class CategoryController extends ParentController
     }
 
 // update second function start
-    public function update(Request $updatedata)
+    public function update(Request $request)
     {
-     $id=$updatedata->id;
-     $name=$updatedata->name;
-     $updatecatdata=CategoryFacade::getCategoryData($id);
-     CategoryFacade::store($updatedata);
+     $categoryData=CategoryFacade::getCategoryData($request->id);
+     Categoryfacade::updateCategory($categoryData, $request->all());
      return redirect(route('category-all'));
     }
 
