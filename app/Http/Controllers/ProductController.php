@@ -8,6 +8,7 @@ use App\Models\Category;
 use domain\Facades\ProductFacade;
 use domain\Facades\CategoryFacade;
 
+
 class ProductController extends ParentController
 {
 
@@ -18,13 +19,19 @@ class ProductController extends ParentController
    $response['products']=ProductFacade::getAllData();
    return view('product')->with($response);
   }
-
+//* product save blade
+  public function addProduct()
+  {
+   $response['categaries']=CategoryFacade::getAllData();
+   return view('productAdd')->with($response);
+  }
 //* product save function
   public function proStore(Request $request)
   {
-   ProductFacade::store($request);
-   return redirect()->back();
+   ProductFacade::store($request->all());
+   return redirect(route('product-all'));
   }
+
 
 //* product delete function
   public function deleteProduct($id)
@@ -45,13 +52,10 @@ class ProductController extends ParentController
 // update second function start
   public function update(Request $request)
   {
-//    $id=$update->id;
-//    $product_data=ProductFacade::getProductData($id);
-//    ProductFacade::store($product_data);
+//    
      $productData=ProductFacade::getProductData($request->id);
-     ProductFacade::updateProduct($productData, $request);
-
-     return redirect(route('product-all'));
+     ProductFacade::updateProduct($productData, $request->all());
+    return redirect(route('product-all'));
   }
 
 
