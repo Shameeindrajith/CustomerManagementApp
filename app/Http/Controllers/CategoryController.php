@@ -14,12 +14,18 @@ class CategoryController extends ParentController
      $catData=CategoryFacade::getAllData();
      return view('category')->with('categories',$catData);
     }
+//* open category add page
+     public function addCategory()
+     {
+      return view('categoryAdd');
+     }
 
 //* Category store part
     public function catStore(Request $request)
     {
      CategoryFacade::store($request); //calling to categoryfacade
-     return redirect()->back();
+    //  return redirect()->back();
+    return redirect(route('category-all'));
     }
 //* Category delete part
     public function deleteCategory($id)
