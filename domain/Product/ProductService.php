@@ -3,6 +3,7 @@ namespace domain\Product;
 
 use App\Models\Category;
 use App\Models\Product;
+use infrastructure\Facades\ImagesFacade;
 
 class ProductService{
 
@@ -20,13 +21,18 @@ class ProductService{
     }
 
 //store product data
-    public function store($request)
+    public function store($data)
     {
-     $image=$request->file('image');
-     $image_name=time().'.'.$image->extension();
-     $image->move(public_path('images'),$image_name);
-     $data=$request->all();
-     $data['image']=$image_name;
+        
+     if (isset($data['image'])) 
+     {
+      $name = str_replace(' ', '-', '');
+      $image = ImagesFacade::up($data['image'], [2, 12, 9, 10, 13, 14], $name);
+     }
+    
+     
+     $data['image_id']=$image->id;
+ 
      return $this->product->create($data);
     }
 
@@ -36,15 +42,18 @@ class ProductService{
      return $this->product->find($id);
     }
 
-//update category
+//update product
     public function updateProduct(Product $product, $request)
     {
-     $image=$request->file('image');
-     $image_name=time().'.'.$image->extension();
-     $image->move(public_path('images'),$image_name);
-     $data=$request->all();
-     $data['image']=$image_name;
-     return $product->update($this->edit($product, $data));
+
+     if (isset($request['image'])) 
+     {
+      $name = str_replace(' ', '-', '');
+      $image = ImagesFacade::up($request['image'], [2, 12, 9, 10, 13, 14], $name);
+     }
+     $request['image_id']=$image->id;
+    
+     return $product->update($this->edit($product, $request));
     }
 
     protected function edit(Product $product, $data)
@@ -54,5 +63,3 @@ class ProductService{
 }
 
 ?>
-
-

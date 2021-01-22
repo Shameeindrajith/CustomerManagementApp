@@ -34,14 +34,14 @@ class CategoryService
      return $this->category->find($id);
     }
 
-    //update category
+//update category
     public function updateCategory(Category $category, $data)
     {
-       return $category->update($this->edit($category, $data));
+     return $category->update($this->edit($category, $data));
     }
 
     protected function edit(Category $category, $data)
     {
-       return array_merge($category->toArray(), $data);
+     return array_merge($category->toArray(), $data);
     }
 }

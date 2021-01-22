@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\ProductController;
+
 
 
 /*
@@ -20,9 +22,12 @@ use App\Http\Controllers\ProductController;
 Route::get('/', function () {
     return view('welcome');
 });
+//dashboard parts routes
+Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard');
 
 // category parts routes
 Route::get('/category-all', [CategoryController::class, 'index'])->name('category-all');
+Route::get('/add-category',[CategoryController::class,'addCategory'])->name('add-category');
 Route::post('/save-category', [CategoryController::class, 'catStore'])->name('save-category');
 Route::get('/delete-category/{id}',[CategoryController::class,'deleteCategory'])->name('delete-category');
 Route::get('/update-category/{id}',[CategoryController::class,'updateCategory'])->name('update-category');
@@ -30,6 +35,7 @@ Route::post('/category-update-part',[CategoryController::class,'update'])->name(
 
 // product parts routes
 Route::get('/product-all', [ProductController::class, 'index'])->name('product-all');
+Route::get('/add-product',[ProductController::class,'addProduct'])->name('add-product');
 Route::post('/save-product', [ProductController::class, 'proStore'])->name('save-product');
 Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct'])->name('delete-product');
 Route::get('/update-product/{id}', [ProductController::class, 'updateProduct'])->name('update-product');
