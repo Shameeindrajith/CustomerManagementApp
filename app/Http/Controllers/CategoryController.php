@@ -8,26 +8,48 @@ use App\Models\Category;
 
 class CategoryController extends ParentController
 {
-//* open category page
+
+    /**
+     * index
+     *
+     * @return void
+     */
     public function index()
     {
      $catData=CategoryFacade::getAllData();
      return view('category')->with('categories',$catData);
     }
-//* open category add page
+
+     /**
+      * addCategory
+      *
+      * @return void
+      */
      public function addCategory()
      {
       return view('categoryAdd');
      }
 
-//* Category store part
+
+    /**
+     * catStore
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function catStore(Request $request)
     {
      CategoryFacade::store($request); //calling to categoryfacade
     //  return redirect()->back();
     return redirect(route('category-all'));
     }
-//* Category delete part
+
+    /**
+     * deleteCategory
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function deleteCategory($id)
     {
      $delete=CategoryFacade::getCategoryData($id);
@@ -35,14 +57,26 @@ class CategoryController extends ParentController
      return redirect()->back();
     }
 
-//* Category update function
+
+    /**
+     * updateCategory
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function updateCategory($id)
     {
      $update=CategoryFacade::getCategoryData($id);
      return view('categoryUpdate')->with('update_categories_data',$update);
     }
 
-// update second function start
+
+    /**
+     * update
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function update(Request $request)
     {
      $categoryData=CategoryFacade::getCategoryData($request->id);

@@ -10,31 +10,60 @@ class CategoryService
 {
     protected $category;
 
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct()
     {
      $this->category = new Category();
     }
 
-//get all category data
+
+    /**
+     * getAllData
+     *
+     * @return void
+     */
     public function getAllData()
     {
      return $this->category->get();
     }
 
-//store category data
+
+    /**
+     * store
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function store($request)
     {
      $data=$request->all();
      return $this->category->create($data);
     }
 
-//find category data
+
+    /**
+     * getCategoryData
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function getCategoryData($id)
     {
      return $this->category->find($id);
     }
 
-//update category
+
+    /**
+     * updateCategory
+     *
+     * @param  mixed $category
+     * @param  mixed $data
+     * @return void
+     */
     public function updateCategory(Category $category, $data)
     {
      return $category->update($this->edit($category, $data));

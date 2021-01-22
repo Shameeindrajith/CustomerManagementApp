@@ -12,20 +12,36 @@ use domain\Facades\CategoryFacade;
 class ProductController extends ParentController
 {
 
-//* open product page
+
+  /**
+   * index
+   *
+   * @return void
+   */
   public function index()
   {
    $response['categaries']=CategoryFacade::getAllData();
    $response['products']=ProductFacade::getAllData();
    return view('product')->with($response);
   }
-//* product save blade
+
+  /**
+   * addProduct
+   *
+   * @return void
+   */
   public function addProduct()
   {
    $response['categaries']=CategoryFacade::getAllData();
    return view('productAdd')->with($response);
   }
-//* product save function
+
+  /**
+   * proStore
+   *
+   * @param  mixed $request
+   * @return void
+   */
   public function proStore(Request $request)
   {
    ProductFacade::store($request->all());
@@ -33,7 +49,13 @@ class ProductController extends ParentController
   }
 
 
-//* product delete function
+
+  /**
+   * deleteProduct
+   *
+   * @param  mixed $id
+   * @return void
+   */
   public function deleteProduct($id)
   {
    $delete=ProductFacade::getProductData($id);
@@ -41,7 +63,13 @@ class ProductController extends ParentController
    return redirect()->back();
   }
 
-//* product update function start
+
+  /**
+   * updateProduct
+   *
+   * @param  mixed $id
+   * @return void
+   */
   public function updateProduct($id)
   {
    $response['categaries']=CategoryFacade::getAllData();
@@ -49,10 +77,15 @@ class ProductController extends ParentController
    return view('productUpdate')->with($response);
   }
 
-// update second function start
+
+  /**
+   * update
+   *
+   * @param  mixed $request
+   * @return void
+   */
   public function update(Request $request)
   {
-//    
      $productData=ProductFacade::getProductData($request->id);
      ProductFacade::updateProduct($productData, $request->all());
     return redirect(route('product-all'));

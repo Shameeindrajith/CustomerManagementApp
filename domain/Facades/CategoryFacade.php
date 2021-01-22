@@ -7,10 +7,14 @@ use Illuminate\Support\Facades\Facade;
 
 class CategoryFacade extends Facade
 {
-//calling to category service
+
+    /**
+     * getFacadeAccessor
+     *
+     * @return void
+     */
     protected static function getFacadeAccessor()
     {
      return 'domain\Category\CategoryService';
     }
 }
-?>

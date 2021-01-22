@@ -9,50 +9,79 @@ class ProductService{
 
     protected $product;
 
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct()
     {
      $this->product=new Product();
     }
 
-//get all product data
+
+    /**
+     * getAllData
+     *
+     * @return void
+     */
     public function getAllData()
     {
      return $this->product->get();
     }
 
-//store product data
+
+    /**
+     * store
+     *
+     * @param  mixed $data
+     * @return void
+     */
     public function store($data)
     {
-        
-     if (isset($data['image'])) 
+
+     if (isset($data['image']))
      {
       $name = str_replace(' ', '-', '');
       $image = ImagesFacade::up($data['image'], [2, 12, 9, 10, 13, 14], $name);
      }
-    
-     
+
+
      $data['image_id']=$image->id;
- 
+
      return $this->product->create($data);
     }
 
-//find product data
+
+    /**
+     * getProductData
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function getProductData($id)
     {
      return $this->product->find($id);
     }
 
-//update product
+
+    /**
+     * updateProduct
+     *
+     * @param  mixed $product
+     * @param  mixed $request
+     * @return void
+     */
     public function updateProduct(Product $product, $request)
     {
 
-     if (isset($request['image'])) 
+     if (isset($request['image']))
      {
       $name = str_replace(' ', '-', '');
       $image = ImagesFacade::up($request['image'], [2, 12, 9, 10, 13, 14], $name);
      }
      $request['image_id']=$image->id;
-    
+
      return $product->update($this->edit($product, $request));
     }
 
@@ -61,5 +90,3 @@ class ProductService{
      return array_merge($product->toArray(), $data);
     }
 }
-
-?>
