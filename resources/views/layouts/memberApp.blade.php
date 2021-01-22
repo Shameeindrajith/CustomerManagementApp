@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -8,10 +7,10 @@
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
     <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
-    <!-- Favicon -->{{ asset('assets/img/brand/favicon.png') }}
+
     <link rel="icon" src="" type="image/png">
 
-     @include('includes.css')
+    @include('includes.css')
 </head>
 
 <body>
@@ -20,7 +19,7 @@
     <!-- Main content -->
     <div class="main-content" id="panel">
         <!-- Topnav -->
-    @include('includes.topNav')
+        @include('includes.topNav')
         <!-- Header -->
         <!-- Header -->
         @yield('header')
@@ -28,7 +27,7 @@
         <div class="container-fluid mt--6">
             @yield('content')
             <!-- Footer -->
-          @include('includes.footer')
+            @include('includes.footer')
         </div>
     </div>
     <!-- Argon Scripts -->
