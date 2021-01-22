@@ -51,7 +51,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-auto">
                                         <!-- Avatar -->
-                                        <img alt="Image placeholder" src="assets/img/theme/team-1.jpg"
+                                        <img alt="Image placeholder" src="{{ asset('assets/img/theme/team-1.jpg') }}"
                                             class="avatar rounded-circle">
                                     </div>
                                     <div class="col ml--2">
